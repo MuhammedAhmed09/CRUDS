@@ -46,16 +46,16 @@ input:focus {
 
 #total {
     display: inline-block;
-}
-
-#total::before {
-    content: "Total:";
-    background-color: red;
+    background-color: red; 
     padding: 3px 6px;
     border-radius: 4px;
 }
 
-.CRUDS .inputs .btn {
+#total::before {
+    content: "Total:";
+}
+
+#submit {
     background-color: #4CAF50;
     width: 100%;
     margin: 4px 0;
@@ -68,7 +68,7 @@ input:focus {
     text-transform: capitalize;
 }
 
-.CRUDS .inputs .btn:hover {
+#submit:hover {
     background-color: #3e8e41;
 }
 

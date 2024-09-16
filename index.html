@@ -17,15 +17,15 @@
         <div class="inputs">
             <input placeholder="title" id="title" type="text">
             <div class="total-price">
-                <input type="number" placeholder="price" id="price">
-                <input type="number" placeholder="taxes" id="taxes">
-                <input type="number" placeholder="ads" id="ads">
-                <input type="number" placeholder="Descout" id="Descout">
-                <small id="total" > 1244</small>
+                <input onkeyup="calculateTotal()" type="number" placeholder="price" id="price">
+                <input onkeyup="calculateTotal()" type="number" placeholder="taxes" id="taxes">
+                <input onkeyup="calculateTotal()" type="number" placeholder="ads" id="ads">
+                <input onkeyup="calculateTotal()" type="number" placeholder="Discout" id="discout">
+                <small id="total"></small>
             </div>
-            <input type="number" placeholder="id" id="id">
+            <input type="number" placeholder="count" id="count">
             <input type="text" placeholder="category" id="category">
-            <button class="btn btn-create">create</button>
+            <button id="submit">create</button>
         </div>
 
 
