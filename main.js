@@ -64,12 +64,13 @@ function clearInputs(){
 //reading products
 
 function readProducts () {
-    let table;
+    let table = '';
+
     for (let i = 0; i < dataProduct.length; i++) {
         table += 
         `
         <tr>
-            <td>${[i]}</td>
+            <td>${i}</td>
             <td>${dataProduct[i].title}</td>
             <td>${dataProduct[i].price}</td>
             <td>${dataProduct[i].taxes}</td>
@@ -78,10 +79,18 @@ function readProducts () {
             <td>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
             <td><button id="update">update</button></td>
-            <td><button id="delete">delete</button></td>
+            <td><button onclick={deleteProduct(${i})} id="delete">delete</button></td>
         </tr>
         `
     }
     document.getElementById('tbody').innerHTML = table;
+}
+readProducts();
 
-}readProducts();
+
+//delete index 
+function deleteProduct(i) {
+    dataProduct.splice(i, 1);
+    localStorage.product = JSON.stringify(dataProduct);
+    readProducts();
+}
