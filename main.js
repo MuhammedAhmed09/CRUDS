@@ -33,14 +33,14 @@ if(localStorage.product != null){
 
 submit.onclick = function(){
     let newProduct = {
-        Title: title.value,
-        Price: price.value,
-        Taxes: taxes.value,
-        Ads: ads.value,
-        Discout: discout.value,
-        Total: total.innerHTML,
-        Count: count.value,
-        Category: category.value,
+        title: title.value,
+        price: price.value,
+        taxes: taxes.value,
+        ads: ads.value,
+        discout: discout.value,
+        total: total.innerHTML,
+        count: count.value,
+        category: category.value,
     }
     dataProduct.push(newProduct);
     // save storage
@@ -67,10 +67,9 @@ function readProducts () {
     let table = '';
 
     for (let i = 0; i < dataProduct.length; i++) {
-        table += 
-        `
+        table += `        
         <tr>
-            <td>${i}</td>
+            <td>${[i]}</td>
             <td>${dataProduct[i].title}</td>
             <td>${dataProduct[i].price}</td>
             <td>${dataProduct[i].taxes}</td>
@@ -79,7 +78,7 @@ function readProducts () {
             <td>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
             <td><button id="update">update</button></td>
-            <td><button onclick={deleteProduct(${i})} id="delete">delete</button></td>
+            <td><button onclick={deleteProduct(${[i]})} id="delete">delete</button></td>
         </tr>
         `
     }
