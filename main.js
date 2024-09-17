@@ -45,7 +45,8 @@ submit.onclick = function(){
     dataProduct.push(newProduct);
     // save storage
     localStorage.setItem('product', JSON.stringify(dataProduct));
-    {clearInputs()}
+    clearInputs()
+    readProducts();
 }
 
 // clear inputs
@@ -59,3 +60,28 @@ function clearInputs(){
     count.value = '';
     category.value = '';
 }
+
+//reading products
+
+function readProducts () {
+    let table;
+    for (let i = 0; i < dataProduct.length; i++) {
+        table += 
+        `
+        <tr>
+            <td>${[i]}</td>
+            <td>${dataProduct[i].title}</td>
+            <td>${dataProduct[i].price}</td>
+            <td>${dataProduct[i].taxes}</td>
+            <td>${dataProduct[i].ads}</td>
+            <td>${dataProduct[i].discout}</td>
+            <td>${dataProduct[i].total}</td>
+            <td>${dataProduct[i].category}</td>
+            <td><button id="update">update</button></td>
+            <td><button id="delete">delete</button></td>
+        </tr>
+        `
+    }
+    document.getElementById('tbody').innerHTML = table;
+
+}readProducts();
