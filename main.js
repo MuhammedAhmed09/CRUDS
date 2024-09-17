@@ -42,9 +42,19 @@ submit.onclick = function(){
         count: count.value,
         category: category.value,
     }
-    dataProduct.push(newProduct);
+
+    //create count 
+        if(newProduct.count > 1){
+        for(let i = 0; i < newProduct.count; i++){
+            dataProduct.push(newProduct)
+        }
+    }else{
+        dataProduct.push(newProduct)
+    }
+    
     // save storage
     localStorage.setItem('product', JSON.stringify(dataProduct));
+
     clearInputs()
     readProducts();
 }
@@ -88,10 +98,11 @@ function readProducts () {
     //create btn to delete all
     let btnDeleteAll = document.getElementById('btn-delete-all');
     if(dataProduct.length > 0) {
-        btnDeleteAll.innerHTML = `<button onclick = {deleteAll()} id="delete-all">delete all</button></button>`
+        btnDeleteAll.innerHTML = `<button onclick={deleteAll()} id="delete-all">delete all (${dataProduct.length})</button></button>`
     }else{
         btnDeleteAll.innerHTML = '';
     }
+    
 }
 readProducts();
 
