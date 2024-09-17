@@ -69,7 +69,7 @@ function readProducts () {
     for (let i = 0; i < dataProduct.length; i++) {
         table += `        
         <tr>
-            <td>${[i]}</td>
+            <td>${i}</td>
             <td>${dataProduct[i].title}</td>
             <td>${dataProduct[i].price}</td>
             <td>${dataProduct[i].taxes}</td>
@@ -78,11 +78,20 @@ function readProducts () {
             <td>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
             <td><button id="update">update</button></td>
-            <td><button onclick={deleteProduct(${[i]})} id="delete">delete</button></td>
+            <td><button onclick={deleteProduct(${i})} id="delete">delete</button></td>
         </tr>
         `
     }
     document.getElementById('tbody').innerHTML = table;
+
+
+    //create btn to delete all
+    let btnDeleteAll = document.getElementById('btn-delete-all');
+    if(dataProduct.length > 0) {
+        btnDeleteAll.innerHTML = `<button onclick = {deleteAll()} id="delete-all">delete all</button></button>`
+    }else{
+        btnDeleteAll.innerHTML = '';
+    }
 }
 readProducts();
 
@@ -91,5 +100,12 @@ readProducts();
 function deleteProduct(i) {
     dataProduct.splice(i, 1);
     localStorage.product = JSON.stringify(dataProduct);
+    readProducts();
+}
+
+//delete all 
+function deleteAll() {
+    localStorage.clear();
+    dataProduct.splice(0);
     readProducts();
 }

@@ -114,3 +114,20 @@ table {
 #update:hover, #delete:hover {
     background-color: #1c6943;
 }
+
+#delete-all {
+    background-color: #f83535fa;
+    width: 100%;
+    margin: 4px 0;
+    border: none;
+    color: #fff;
+    padding: 8px 0;
+    border-radius: 4px;
+    transition: .5s;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+#delete-all:hover {
+    background-color: #e40707;
+}
