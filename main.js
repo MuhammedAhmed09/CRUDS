@@ -7,6 +7,8 @@ let total = document.getElementById('total');
 let count = document.getElementById('count');
 let category = document.getElementById('category');
 let submit = document.getElementById('submit');
+let mood = 'create';
+let forged;
 
 
 //getTotal 
@@ -17,8 +19,8 @@ function calculateTotal() {
         total.innerHTML = getTotal;
         total.style.backgroundColor = 'green';
     }else {
-        total.innerHTML = '';
         total.style.backgroundColor = 'red';
+        total.innerHTML = '';
     }
 }
 
@@ -43,20 +45,29 @@ submit.onclick = function(){
         category: category.value,
     }
 
-    //create count 
+    if(mood === 'create'){
+        //count
         if(newProduct.count > 1){
         for(let i = 0; i < newProduct.count; i++){
             dataProduct.push(newProduct)
         }
+        }else{
+            dataProduct.push(newProduct)
+        }
     }else{
-        dataProduct.push(newProduct)
+        dataProduct[forged] = newProduct;
+        mood = 'create';
+        submit.innerHTML = 'create';
+        count.style.display = 'inline';
     }
+    
     
     // save storage
     localStorage.setItem('product', JSON.stringify(dataProduct));
 
-    clearInputs()
+    clearInputs();
     readProducts();
+    calculateTotal();
 }
 
 // clear inputs
@@ -87,7 +98,7 @@ function readProducts () {
             <td>${dataProduct[i].discout}</td>
             <td>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
-            <td><button id="update">update</button></td>
+            <td><button id="update" onclick={updateProduct(${i})}>update</button></td>
             <td><button onclick={deleteProduct(${i})} id="delete">delete</button></td>
         </tr>
         `
@@ -119,4 +130,24 @@ function deleteAll() {
     localStorage.clear();
     dataProduct.splice(0);
     readProducts();
+}
+
+
+//update
+function updateProduct(i) {
+    title.value = dataProduct[i].title;
+    price.value = dataProduct[i].price;
+    taxes.value = dataProduct[i].taxes;
+    ads.value = dataProduct[i].ads;
+    discout.value = dataProduct[i].discout;
+    calculateTotal();
+    category.value = dataProduct[i].category;
+    submit.innerHTML = 'update';
+    count.style.display = 'none';
+    mood = 'update';
+    forged = i;
+    scroll({
+        top: 0,
+        behavior: 'smooth'
+    })
 }
