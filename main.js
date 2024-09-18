@@ -45,7 +45,8 @@ submit.onclick = function(){
         category: category.value.toLowerCase(),
     }
 
-    if(mood === 'create'){
+    if(title.value != '' && category.value != '' && count.value <= 100){
+        if(mood === 'create'){
         //count
         if(newProduct.count > 1){
         for(let i = 0; i < newProduct.count; i++){
@@ -60,10 +61,14 @@ submit.onclick = function(){
             submit.innerHTML = 'create';
             count.style.display = 'inline';
         }
+        clearInputs();
+    }else{
+        alert('Please fill all fields and count must be less than 100')
+    }
+    
 
     // save storage
     localStorage.setItem('product', JSON.stringify(dataProduct));
-    clearInputs();
     readProducts();
     calculateTotal();
 }
@@ -87,7 +92,7 @@ function readProducts () {
     for (let i = 0; i < dataProduct.length; i++) {
         table +=  
         `<tr>
-            <td>${i}</td>
+            <td>${i+1}</td>
             <td>${dataProduct[i].title}</td>
             <td>${dataProduct[i].price}</td>
             <td>${dataProduct[i].taxes}</td>
